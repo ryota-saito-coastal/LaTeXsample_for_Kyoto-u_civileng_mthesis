@@ -1,0 +1,386 @@
+%===============================================================================
+% ファイル名: master_ja_sample.tex
+% 作成者：サイトウ リョウタ（2024年度山上研究室 修士修了）
+% 作成日：2025年2月19日
+% 
+% これは京大土木系の修士論文作成のためのサンプルLaTeXファイルです．
+% 「コンパイル環境をいじらないで使える！」を目指してま～す☆
+% LuaLaTeXでコンパイルするとバッチリだよ！
+%
+% ちなみに、すいちゃんは～？今日もかわいい～！
+%===============================================================================
+\documentclass[a4paper, 11pt]{report}
+\usepackage{luatexja}
+
+% Required packages
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{subcaption}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{bookmark}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{luatexja-fontspec}
+\usepackage{tocloft}
+\usepackage{indentfirst} % Enable indentation for the first paragraph after a chapter or section
+\usepackage{cite} % ref
+\usepackage{float} % for \begin{figure}[H] option in figures, fix in the position
+\usepackage{xcolor}
+\usepackage{ifthen}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage[ppl]{mathcomp}
+\usepackage{multirow}
+
+\makeatletter
+\renewcommand{\@cite}[2]{\textsuperscript{#1)}} % "1)"
+
+\newcommand{\supercite}[2]{\cite{#1}\textsuperscript{,}\cite{#2}}
+
+% Reference style
+\renewenvironment{thebibliography}[1]
+{\section*{\fontsize{18pt}{22pt}\selectfont 参考文献}
+    \list{\arabic{enumi})}
+        {\settowidth\labelwidth{#1)}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \usecounter{enumi}%
+        \let\p@enumi\@empty
+        \renewcommand\theenumi{\arabic{enumi})}}%
+    \sloppy\clubpenalty4000\widowpenalty4000\sfcode`\.\@m}
+{\endlist}
+\urlstyle{same}   
+
+% Set font to MS Mincho
+\setmainjfont{MS Mincho}[
+    RawFeature={+palt, +kern},
+    LetterSpace=12.5 % Increase spacing between characters
+]
+\setsansjfont{MS Gothic}[
+    RawFeature={+palt, +kern},
+    LetterSpace=10.0
+]
+\renewcommand{\bfseries}{\gtfamily}
+
+% Set font to Times New Roman for English
+\setmainfont{Times New Roman}[
+    RawFeature={+palt, +kern},
+    LetterSpace=2.0
+]
+\setsansfont{Arial}[
+    RawFeature={+palt, +kern},
+    LetterSpace=1.5
+]
+\setmonofont{Courier New}[
+    RawFeature={+palt, +kern},
+    LetterSpace=1.0
+]
+
+% Page margins settings
+\geometry{
+    left=20mm,      % Left margin
+    right=20mm,     % Right margin
+    top=25mm,       % Top margin
+    bottom=25mm     % Bottom margin
+}
+
+% Line spacing
+\setstretch{1.2}
+\renewcommand{\baselinestretch}{1.2}
+\linespread{2.5}
+\newcommand{\HRule}[1]{\rule{1\linewidth}{#1}}
+
+% Rename figure and table captions to Japanese
+\renewcommand{\figurename}{\normalfont\gtfamily 図} % Figure label to Japanese
+\renewcommand{\tablename}{\normalfont\gtfamily 表} % Table label to Japanese
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+\newcommand{\figureref}[1]{図\ref{#1}}
+\newcommand{\tableref}[1]{表\ref{#1}}
+
+% Page numbering
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage} % Page number centered in the footer
+\renewcommand{\headrulewidth}{0pt}
+
+% =====================================================
+% REMOVE FOR SUBMISSION!!!
+% Set color for my eyes
+% Disable or delete the following settings to revert 
+% the background and text colors to normal settings!!!
+% 
+% Conditional flag: Submission mode (1: Submission, 0: Debug mode)
+\newcommand{\submissionmode}{1} % Set to 1 for submission
+% 
+% =====================================================
+
+% NOTE: REMOVE FOR SUBMISSION!
+\newcommand{\debugnote}{
+    \ifthenelse{\submissionmode=0}{
+        \textbf{\textcolor{red}{\LARGE{REMOVE THIS COLOR SETTING FOR SUBMISSION!}}} \\
+    }{}
+}
+
+\ifthenelse{\submissionmode=0}{
+    \pagecolor{black}
+    \color{white}
+}{}
+
+% =====================================================
+% =====================================================
+\titleformat{\chapter}
+    {\normalfont\fontsize{20pt}{24pt}\gtfamily} % Style and font size
+    {第\hspace{2pt}\thechapter 章} % Chapter format: "\u7b2c" ("第") and "\u7ae0" ("章") for "Chapter"
+    {20pt} % Space between chapter number and title
+    {\fontsize{20pt}{10pt}\selectfont} % Font size for title text
+
+% Section and subsection title formatting
+\titleformat{\section}
+    {\normalfont\fontsize{12pt}{12pt}\gtfamily} % Style and font size
+    {\thesection}{1em}{}
+
+\titleformat{\subsection}
+    {\normalfont\fontsize{12pt}{12pt}\gtfamily} % Style and font size
+    {\thesubsection}{1em}{}
+
+% Contents title to Japanese
+\renewcommand{\contentsname}{\normalfont\gtfamily 目次} % Set "\u76ee\u6b21" ("目\u6b21") for "Contents"
+
+% number of chaper, section, subsection
+\renewcommand{\thechapter}{\arabic{chapter}}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+% tocloft
+\renewcommand{\cftchappresnum}{第}
+\renewcommand{\cftchapaftersnum}{章\hspace{0.5em}}
+
+% for section and subsection
+\renewcommand{\cftsecpresnum}{} 
+\renewcommand{\cftsecaftersnum}{\hspace{0.5em}}
+\renewcommand{\cftsubsecpresnum}{}
+\renewcommand{\cftsubsecaftersnum}{\hspace{0.5em}}
+
+% to output % (percent)
+\newcommand{\percent}{\%}
+
+% Adjust spacing in the table of contents
+\setlength{\cftchapnumwidth}{4.0em} % Width for "第1章"
+
+\begin{document}
+\clearpage
+\pagenumbering{roman} % i, ii, iii
+\setlength{\baselineskip}{19.5pt}
+
+% Title page
+\thispagestyle{empty}
+
+% Logo of Kyoto University
+\noindent
+\begin{minipage}[t]{\linewidth}
+    \vspace{3.5cm}
+    \raggedleft % Align to the right
+    \raisebox{-1cm}[0pt][0pt]{
+    \includegraphics[width=0.18\linewidth]{./img/title/kyodai.png}
+    }
+\end{minipage}
+
+\vspace{-1.5cm}
+\noindent
+{\fontsize{12pt}{12pt}\gtfamily
+\hspace{-0.3em}
+\setlength{\baselineskip}{12pt}
+\begin{minipage}[t]{\linewidth}
+    京都大学大学院工学研究科 \\[-1.3em]
+    社会基盤工学専攻修士論文 \\[-1.3em]
+    令和７年２月 \\[-1.3em]
+\end{minipage}
+}
+
+\noindent
+{\fontsize{12pt}{12pt}\gtfamily
+\hspace{-0.3em}
+\setlength{\baselineskip}{12pt}
+\begin{minipage}[t]{\linewidth}
+    Master's Thesis \\[-1.3em]
+    Department of Civil and Earth Resources Engineering \\[-1.3em]
+    Graduate School of Engineering \\[-1.3em]
+    Kyoto University \\[-1.3em]
+    February 2025 \\[-1.7em]
+\end{minipage}
+}
+\HRule{1.0pt}
+\begin{center}
+    \vspace{2.5cm}
+    \debugnote
+    {\fontsize{18pt}{36pt}\selectfont 
+    \LaTeX による修士論文作成フォーマット
+    } \\
+    \vspace{6.5cm}
+    {\fontsize{16pt}{18pt}\selectfont 
+    京都大学大学院 \hspace{1em}工学研究科 \hspace{1em}社会基盤工学専攻 \\ 
+    アイドル講座\hspace{1em}バーチャル音響学分野 \\ 
+    星街\hspace{1em}すいせい \\
+    }
+\end{center}
+\newpage
+
+% Abstract
+\begin{center}
+    {\fontsize{12pt}{26pt}\selectfont \gtfamily 論文要旨} % 20pt font size, 24pt line spacing, gothic
+\end{center}
+\par \indent
+ここから要旨を書き始めます．
+「論文要旨」はセンタリングされます．
+
+改行する際にはこのように空行を一行入れます．
+「彗星のごとく現れたスターの原石！バーチャルアイドルの星街すいせいでーす！」
+「彗星のごとく現れたスターの原石！バーチャルアイドルの星街すいせいでーす！」
+「彗星のごとく現れたスターの原石！バーチャルアイドルの星街すいせいでーす！」
+「彗星のごとく現れたスターの原石！バーチャルアイドルの星街すいせいでーす！」
+「彗星のごとく現れたスターの原石！バーチャルアイドルの星街すいせいでーす！」
+このようにすれば改行されません．
+\newpage
+
+% Table of contents
+\tableofcontents
+\newpage
+
+\clearpage
+\pagenumbering{arabic}
+
+% Main content starts here
+% ------------------------------------------------------------------------------
+% ---chapter 1.-----------------------------------------------------------------
+% ------------------------------------------------------------------------------
+\chapter{はじめに}
+この\LaTeX フォーマットは，京都大学大学院工学研究科社会基盤工学専攻・都市社会工学専攻の修士論文を執筆するための基本的な
+機能付きのテキストファイルです．
+とりあえず，2024年度の修士論文フォーマットには対応しています．
+
+使用する\LaTeX コンパイラはLuaLaTeX環境を想定しています．
+pLaTeX環境等をお使いの方は，適宜プリアンプルの修正を行ってください．
+
+また，本フォーマットにはデバッグモードを実装しています．
+出力されるpdfがブラック背景に白文字になるので，目の疲れを低減することができます．
+submissionmodeの1を0に変更すればデバッグモードになります．
+
+\section{新しい節}
+節はsectionコマンドで入れます．
+
+\subsection{新しい項}
+項はsubsectionコマンドを用います．
+
+% ------------------------------------------------------------------------------
+% ---chapter 2.-----------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
+\chapter{論文の執筆}
+\section{図の挿入}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./img/chap2/computer_tokui_boy.png}
+    \caption{コンピューターの得意な男の子}
+    \label{fig_pcboy}
+\end{figure}
+[H]を使うと.texの入力通りの場所にfloatを配置できますが，文書が崩れる可能性があります．
+基本的には[p]または[t]を用いるのがおすすめです．
+このサンプルでは文章量の都合上[H]指定しています．
+そのほかの設定やsubfigureの環境については調べてみてください．
+
+\section{表の挿入}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{.8}
+    \setlength{\tabcolsep}{12pt}
+    \caption{星街すいせいのプロフィール\cite{11}}
+    \begin{tabular}{c|c}
+        \toprule
+        \textbf{項目} & \textbf{内容} \\ 
+        \midrule
+        誕生日 & 3月22日 \\ 
+        デビュー日 & 2018年3月22日 \\ 
+        身長 & \SI{160}{cm} \\ 
+        ユニット & ホロライブ0期生 \\ 
+        メイク担当 & 手島nari \\ 
+        ファンネーム & 星詠み \\ 
+        配信タグ & \#ほしまちすたじお \\ 
+        ファンアートタグ & \#ほしまちぎゃらりー \\ 
+        \bottomrule
+    \end{tabular}
+    \label{tab_suisei_profile}
+\end{table}
+このように表を挿入することができます．
+なぜか[H]を指定すると行間が大きくなってしまうので0.8を指定しましたが，[t]なら1.8程度でいいと思います．
+
+\section{数式の挿入}
+数式は文中への挿入またはequation環境での挿入の二種類に分かれます．
+文中に挿入する際は，\(L = 4\pi R^2 \sigma T^4\)このように追加します．
+
+独立表示させるには，
+\begin{equation}
+    r = \frac{a(1 - e^2)}{1 + e \cos\theta}
+\end{equation}
+このように書きます．
+
+\section{引用・参照}
+\tableref{tab_suisei_profile}において引用を行いましたが，引用はciteコマンドを用いています．
+また，表や図，数式の参照を行う際はref系のコマンドで行います．
+
+引用については，thebibliography環境を用いています．
+自分が執筆した際は手動入力を行いました．
+bibtex環境を用いてもいいと思いますが，コンパイルの手順や必要packageについてはご確認ください．
+
+\section{その他}
+SI単位系にはSIコマンドを用いています．
+\SI{10}{m/s}等入力して，SI単位系付きの数値を適切に入力できます．
+
+% ------------------------------------------------------------------------------
+% ---chapter 3.-----------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% chapter 3以降も同様に追加していきます．
+% \chapter{以降の章タイトル}
+
+% ------------------------------------------------------------------------------
+% Acknowledgement
+% ------------------------------------------------------------------------------
+
+\newpage
+\addtocontents{toc}{\vspace{3em}} % vspace in TOC
+\section*{\fontsize{18pt}{22pt}\selectfont 謝辞} % Acknowledgement in TOC
+\addcontentsline{toc}{section}{謝辞}
+ここから謝辞が入ります．（主査の教授\rightarrow 副査の教授 \rightarrow 副査の准教授の先生の順，その後に
+お世話になった先生や技術職員の方，他の学生等について言及する）
+
+% ------------------------------------------------------------------------------
+% Reference and Cited Works
+% ------------------------------------------------------------------------------
+
+\newpage
+\addtocontents{toc}{\vspace{2em}} % vspace in TOC
+\addcontentsline{toc}{section}{参考文献} % Reference in TOC
+\begin{thebibliography}{99}
+    % chapter 1
+    \bibitem{11} 星街すいせい，ホロライブ公式サイト，\url{https://hololive.hololivepro.com/talents/hoshimachi-suisei/}，（参照，2025-2-19）.
+    % chapter 2
+    % chapterごとに分けておくと後で楽，pbibtexでのコンパイルを組み合わせてもいいと思います．
+\end{thebibliography}
+
+% ------------------------------------------------------------------------------
+
+\end{document}
+
+% ------------------------------------------------------------------------------
+% ---end document---------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
+
+
+
