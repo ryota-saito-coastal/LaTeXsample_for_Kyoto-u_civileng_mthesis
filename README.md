@@ -34,7 +34,7 @@ LaTeXsample_for_Kyoto-u_civileng_mthesis/
 ## 使いかた
 ターミナルなどで
 ```bash
-git clone https://github.com/<your_account>/LaTeXsample_for_Kyoto-u_civileng_mthesis.git
+git clone https://github.com/ryota-saito-KyotoU/LaTeXsample_for_Kyoto-u_civileng_mthesis.git
 ```
 
 または，「Code」→「Download ZIP」．
