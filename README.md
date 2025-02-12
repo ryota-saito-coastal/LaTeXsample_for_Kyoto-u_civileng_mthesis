@@ -25,6 +25,7 @@
 LaTeXsample_for_Kyoto-u_civileng_mthesis/
 ├─ README.md                         // 本ファイル
 ├─ master_ja_sample.tex      // メインのLaTeXソース
+├─ master_ja_sample.pdf      // 作成者の環境でコンパイルしたpdf
 ├─ img/
 │   ├─ title/kyodai.png              // タイトルページ用ロゴの例
 │   └─ chap2/computer_tokui_boy.png  // サンプル画像
