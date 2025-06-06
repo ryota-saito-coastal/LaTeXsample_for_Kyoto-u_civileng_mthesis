@@ -55,3 +55,5 @@ git clone https://github.com/ryota-saito-KyotoU/LaTeXsample_for_Kyoto-u_civileng
 
 > **すいちゃんは～？今日もかわいい～！**
 > Happy \LaTeX ing! 彗星のごとく仕上げちゃおう！
+
+> 論文執筆に疲れたらホロライブの配信で英気を養いましょう！
