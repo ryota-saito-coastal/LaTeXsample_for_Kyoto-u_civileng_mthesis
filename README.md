@@ -50,7 +50,7 @@ git clone https://github.com/ryota-saito-KyotoU/LaTeXsample_for_Kyoto-u_civileng
 
 ## 作者・連絡先
 - **作成者**：サイトウ リョウタ
-- **研究室**：山上研究室（2024年度 修士修了予定）
+- **研究室**：山上研究室（2024年度 修士修了）
 - **Twitter**：@pokitamazaing
 
 > **すいちゃんは～？今日もかわいい～！**
