@@ -15,7 +15,7 @@
 3. **デバッグモード**を実装
    - `\submissionmode=0` で背景を黒，文字を白にできます
 4. **日本語フォント**にMS Mincho，英語フォントに Times New Romanを指定
-5. **パッケージ**：`amsmath`, `luatexja`, `graphicx`, `booktabs` など，基本的なものをあらかじめ読み込み済み
+5. **パッケージ**：`amsmath`, `luatexja`, `graphicx`, `booktabs` など
 
 ---
 
@@ -56,4 +56,3 @@ git clone https://github.com/ryota-saito-KyotoU/LaTeXsample_for_Kyoto-u_civileng
 > **すいちゃんは～？今日もかわいい～！**
 > Happy \LaTeX ing! 彗星のごとく仕上げちゃおう！
 
-> 論文執筆に疲れたらホロライブの配信で英気を養いましょう！
